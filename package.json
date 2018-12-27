@@ -1,0 +1,16 @@
+{
+  "name": "altai_toggle",
+  "title": "Altai Toggle",
+  "version": "1.0.17",
+  "description": "Slide or Fade toggle elements.",
+  "main": "dist/altai_toggle.js",
+  "dependencies": {
+    "jquery": "^3.0"
+  },
+  "repository": {
+    "url": "https://github.com/iigethr/altai_toggle",
+    "type": "git"
+  },
+  "author": "Team IIGETHR <wearesocial@iigethr.com>",
+  "license": "MIT"
+}

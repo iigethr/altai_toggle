@@ -12,7 +12,7 @@ var jQuery;
   return $.fn.extend({
     altaiToggle: function(options) {
       // Variables
-      var action, close, log, settings, status;
+      var action, close, log, settings, status, wrapper;
       var object = $(this);
 
       // Default settings
@@ -20,9 +20,13 @@ var jQuery;
         easing: "linear",
         effect: "slide",
         hide: true,
-        klass: ".altai-trigger",
+        klass: ".altai-toggle-trigger",
         speed: "fast",
         close: true,
+        wrapper: true,
+        wrapperKlass: "altai-toggle-wrapper",
+        wrapperFloat: "right",
+        wrapperWidth: 300,
         debug: false
       };
       settings = $.extend(settings, options);
@@ -80,15 +84,31 @@ var jQuery;
         });
       };
 
+      // Wrapper
+      wrapper = function() {
+        if (settings.wrapper === true) {
+          object.wrap( "<div class='" + settings.wrapperKlass + "'></div>" );
+          object.css({
+            "width"     : settings.wrapperWidth + "px"
+          });
+          $("." + settings.wrapperKlass).css({
+            "display"   : "block",
+            "float"     : settings.wrapperFloat,
+            "overflow"  : "hidden",
+            "width"     : settings.wrapperWidth + "px"
+          });
+          return;
+        }
+      };
+
       // If object found run actions
       if (object.length > 0) {
         return this.each(function(event) {
           status();
           action();
-          if (settings.close === true) {
-            close();
-          }
-          log("Altai Toggle Activated");
+          close();
+          wrapper();
+          log("Altai toggle activated");
         });
       }
     }

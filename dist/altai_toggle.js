@@ -26,6 +26,7 @@ var jQuery;
         wrapper: true,
         wrapperKlass: "altai-toggle-wrapper",
         wrapperFloat: "right",
+        wrapperWidthSet: false,
         wrapperWidth: 300,
         debug: false
       };
@@ -88,13 +89,18 @@ var jQuery;
       wrapper = function() {
         if (settings.wrapper === true) {
           object.wrap( "<div class='" + settings.wrapperKlass + "'></div>" );
+          $("." + settings.wrapperKlass).css({
+            "display"   : "block",
+            "float"     : settings.wrapperFloat,
+            "overflow"  : "hidden"
+          });
+          return;
+        }
+        if (settings.wrapperWidthSet === true) {
           object.css({
             "width"     : settings.wrapperWidth + "px"
           });
           $("." + settings.wrapperKlass).css({
-            "display"   : "block",
-            "float"     : settings.wrapperFloat,
-            "overflow"  : "hidden",
             "width"     : settings.wrapperWidth + "px"
           });
           return;
